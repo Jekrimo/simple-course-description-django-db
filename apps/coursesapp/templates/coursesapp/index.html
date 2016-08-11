@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>Courses</title>
+    <link rel= 'stylesheet' type= 'text/css' href= "{% static 'coursesapp/courses.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+<body>
+<div id= "container">
+  <h1>Add a new course</h1>
+  <form class="form-horizontal" action="/create" method="post" role="form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="name">Name:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="name" name= "name" placeholder="Enter name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="pwd">Description:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="Des" name= "description" placeholder="Enter Description">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-4">
+        <button type="submit" class="btn btn-default">Add</button>
+      </div>
+    </div>
+  </form>
+  <h1>Courses</h1>
+  <table class= "table table-striped table-bordered">
+    <thead>
+      <tr>
+        <td class= "bold">Course Name</td>
+        <td class= "bold">Description</td>
+        <td class= "bold">Date added</td>
+        <td class= "bold">Actions</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in Course %}
+      <tr>
+        <td>{{course.course_name}}</td>
+        <td>{{course.description}}</td>
+        <td>{{course.created_at}}</td>
+        <td><a href= "courses/destroy/{{course.id}}">remove</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+#container{
+  padding: 25px;
+}
+
+#container h1{
+  margin-left: 40px;
+}
+
+.bold{
+  font-weight: bold;
+}
